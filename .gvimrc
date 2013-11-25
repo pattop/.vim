@@ -39,13 +39,13 @@ if exists("syntax_on")
 endif
 let g:colors_name = "patrick"
 
-highlight Comment	 ctermfg=8						  guifg=green					gui=none
+highlight Comment	 ctermfg=8						  guifg=#007800					gui=none
 highlight Constant	 ctermfg=14			   cterm=none guifg=lightred				gui=none
 highlight Identifier ctermfg=6						  guifg=cyan					gui=none
 highlight Statement  ctermfg=3			   cterm=none guifg=cyan					gui=none
 highlight PreProc	 ctermfg=10						  guifg=cyan					gui=none
 highlight Type		 ctermfg=2						  guifg=cyan					gui=none
-highlight Special	 ctermfg=12						  guifg=#0000ff						gui=none
+highlight Special	 ctermfg=12						  guifg=#00AA00					gui=none
 highlight Error					ctermbg=9							guibg=#ff0000	gui=none
 highlight Todo		 ctermfg=4	ctermbg=3			  guifg=#000080 guibg=#c0c000	gui=none
 highlight Directory  ctermfg=2						  guifg=#00c000					gui=none
