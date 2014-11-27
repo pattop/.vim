@@ -18,22 +18,16 @@ set softtabstop=4
 set shiftround
 set smarttab
 
-"set tabstop=4
-"set shiftwidth=4
+set cinoptions=(4,u4,U4
+
 set nowrap
-"colors patrick
-"set gfn=Dina:h8:cANSI
-"set gfn="Bitstream Vera Sans Mono":h8:cANSI
 syntax on
-"behave mswin
 set updatetime=1000
-"source $VIMRUNTIME/mswin.vim
 
 filetype plugin on
 
 highlight clear
 set background=dark
-"set foreground=#C8C8C8
 if exists("syntax_on")
   syntax reset
 endif
@@ -55,18 +49,9 @@ highlight Search				ctermbg=3							guibg=#c0c000	gui=none
 highlight Pmenu			guibg=#202040	gui=none
 highlight PmenuSel		guibg=#5050A0	gui=none
 
-"win 177 80
-
 set gfn=ProggyCleanTT\ 12
-":h8:cANSI
 
-"Enable ctrl+hjkl for changing buffers
 let g:bufExplorerFindActive = 0
-
-" ConqueTerm settings
-"let g:ConqueTerm_ReadUnfocused = 1
-"let g:ConqueTerm_FastMode = 0
-"let g:ConqueTerm_Color = 2
 
 "Show whitespace errors
 highlight ExtraWhitespace ctermbg=red guibg=red
