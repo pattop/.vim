@@ -18,7 +18,7 @@ set softtabstop=4
 set shiftround
 set smarttab
 
-set cinoptions=(4,u4,U4
+set cinoptions=(4,u4,U4,m1,+4
 
 set nowrap
 syntax on
@@ -60,3 +60,20 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$\| \+\ze\t/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$\| \+\ze\t/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$\| \+\ze\t/
 autocmd BufWinLeave * call clearmatches()
+
+"Diff options
+set diffopt=filler,iwhite
+
+set diffexpr=MyDiff()
+function MyDiff()
+   let opt = ""
+   if &diffopt =~ "icase"
+     let opt = opt . "-i "
+   endif
+   if &diffopt =~ "iwhite"
+     let opt = opt . "-w "
+   endif
+   silent execute "!diff -a --binary " . opt . v:fname_in . " " . v:fname_new .
+	\  " > " . v:fname_out
+endfunction
+
