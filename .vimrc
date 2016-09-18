@@ -79,6 +79,8 @@ set smarttab
 
 set cinoptions=(4,u4,U4,m1,+4
 
+set colorcolumn=80
+
 set nowrap
 syntax on
 set updatetime=1000
@@ -108,6 +110,7 @@ highlight Search				ctermbg=3							guibg=#c0c000	gui=none
 highlight Pmenu			guibg=#202040	gui=none
 highlight PmenuSel		guibg=#5050A0	gui=none
 highlight Cursorline	guibg=#151515
+highlight ColorColumn	guibg=#151515
 
 set gfn=ProggyCleanTT\ 12
 "set gfn=Tamsyn\ 12
