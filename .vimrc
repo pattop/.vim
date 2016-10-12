@@ -94,6 +94,7 @@ if exists("syntax_on")
 endif
 let g:colors_name = "patrick"
 
+set termguicolors
 highlight Comment	 ctermfg=8						  guifg=#007800					gui=none
 highlight Constant	 ctermfg=14			   cterm=none guifg=lightred				gui=none
 highlight Identifier ctermfg=6						  guifg=cyan					gui=none
@@ -109,7 +110,7 @@ highlight Normal									  guifg=#d0d0d0 guibg=#000000	gui=none
 highlight Search				ctermbg=3							guibg=#c0c000	gui=none
 highlight Pmenu			guibg=#202040	gui=none
 highlight PmenuSel		guibg=#5050A0	gui=none
-highlight Cursorline	guibg=#151515
+highlight Cursorline	cterm=none guibg=#151515
 highlight ColorColumn	guibg=#151515
 
 set gfn=ProggyCleanTT\ 12
