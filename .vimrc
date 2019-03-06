@@ -126,6 +126,9 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$\| \+\ze\t/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$\| \+\ze\t/
 autocmd BufWinLeave * call clearmatches()
 
+"Check for file changes when entering buffer or gaining focus
+autocmd FocusGained,BufEnter,InsertEnter * :checktime
+
 "Diff options
 set diffopt=filler,iwhite
 
