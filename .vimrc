@@ -37,7 +37,7 @@ Plugin 'tpope/vim-fugitive'
 
 Plugin 'https://github.com/jlanzarotta/bufexplorer'
 " Plugin 'https://github.com/felipec/notmuch-vim'
-Plugin 'https://github.com/imain/notmuch-vim'
+" Plugin 'https://github.com/imain/notmuch-vim'
 " Plugin 'https://github.com/Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
