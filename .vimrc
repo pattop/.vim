@@ -120,7 +120,7 @@ set gfn=ProggyCleanTT\ 12
 
 "Show whitespace errors
 highlight ExtraWhitespace ctermbg=red guibg=red
-"match ExtraWhitespace /\s\+$/
+match ExtraWhitespace /\s\+$\| \+\ze\t/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$\| \+\ze\t/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$\| \+\ze\t/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$\| \+\ze\t/
@@ -145,18 +145,7 @@ function MyDiff()
 	\  " > " . v:fname_out
 endfunction
 
-"NotMuch configuration
-let g:notmuch_folders = [
-	\ [ 'new', 'tag:inbox and tag:unread' ],
-	\ [ 'inbox', 'tag:inbox' ],
-	\ [ 'unread', 'tag:unread' ],
-	\ [ 'to-do', 'tag:to-do' ],
-	\ [ 'to-me', 'to:patrick.oppenlander and tag:new' ],
-	\ [ 'MoTeC', 'to:motec@motec.com.au' ],
-	\ [ 'Redmine', 'from:redmine@motec.com.au' ],
-	\ [ 'GCC Bugzilla', 'from:gcc-bugzilla@gcc.gnu.org' ],
-	\ [ 'MoTeC Online', 'subject:MoTeCOnline' ],
-	\ [ 'Applications Support', 'from:applications@motec.com.au or from:applications-comment@motec.com.au' ],
-	\ [ 'Dispatch', 'from:dispatch@motec.com.au' ],
-	\ [ 'Announce', 'from:announce@motec.com.au or from:beta@motec.com.au' ],
-	\ ]
+"Persistent undo
+set undofile
+set undodir=$HOME/.vim/undo
+set undolevels=1000
