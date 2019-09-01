@@ -43,6 +43,7 @@ Plugin 'https://github.com/jlanzarotta/bufexplorer'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin on    " required
+filetype indent off
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
@@ -70,6 +71,8 @@ set shortmess=aIoWT
 set showmatch
 set noswapfile
 set cursorline
+set belloff=all
+set mouse=a
 
 set tabstop=8
 set shiftwidth=8
@@ -78,7 +81,6 @@ set shiftround
 set smarttab
 
 set cinoptions=(4,u4,U4,m1,+4
-
 set colorcolumn=80
 
 set nowrap
@@ -96,7 +98,8 @@ let g:colors_name = "patrick"
 
 set termguicolors
 highlight Comment	 ctermfg=8						  guifg=#007800					gui=none
-highlight Constant	 ctermfg=14			   cterm=none guifg=lightred				gui=none
+"highlight Constant	 ctermfg=14			   cterm=none guifg=lightred				gui=none
+highlight Constant	 ctermfg=14			   cterm=none guifg=#d96767					gui=none
 highlight Identifier ctermfg=6						  guifg=cyan					gui=none
 highlight Statement  ctermfg=3			   cterm=none guifg=cyan					gui=none
 highlight PreProc	 ctermfg=10						  guifg=cyan					gui=none
@@ -112,6 +115,9 @@ highlight Pmenu			guibg=#202040	gui=none
 highlight PmenuSel		guibg=#5050A0	gui=none
 highlight Cursorline	cterm=none guibg=#151515
 highlight ColorColumn	guibg=#151515
+
+" fix vertical split styling in neovim
+set fillchars+=vert:\|
 
 set gfn=ProggyCleanTT\ 12
 "set gfn=Tamsyn\ 12
@@ -149,3 +155,4 @@ endfunction
 set undofile
 set undodir=$HOME/.vim/undo
 set undolevels=1000
+
