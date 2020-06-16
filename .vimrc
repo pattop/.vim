@@ -73,6 +73,7 @@ set noswapfile
 set cursorline
 set belloff=all
 set mouse=a
+set inccommand=nosplit
 
 set tabstop=8
 set shiftwidth=8
@@ -80,7 +81,7 @@ set softtabstop=4
 set shiftround
 set smarttab
 
-set cinoptions=(4,u4,U4,m1,+4
+set cinoptions=(0,u4,U4,m1,+4,g0
 set colorcolumn=80
 
 set nowrap
