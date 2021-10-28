@@ -101,10 +101,10 @@ set termguicolors
 highlight Comment	 ctermfg=8						  guifg=#007800					gui=none
 "highlight Constant	 ctermfg=14			   cterm=none guifg=lightred				gui=none
 highlight Constant	 ctermfg=14			   cterm=none guifg=#d96767					gui=none
-highlight Identifier ctermfg=6						  guifg=cyan					gui=none
-highlight Statement  ctermfg=3			   cterm=none guifg=cyan					gui=none
-highlight PreProc	 ctermfg=10						  guifg=cyan					gui=none
-highlight Type		 ctermfg=2						  guifg=cyan					gui=none
+highlight Identifier ctermfg=6						  guifg=#00e0e0					gui=none
+highlight Statement  ctermfg=3			   cterm=none guifg=#00e0e0					gui=none
+highlight PreProc	 ctermfg=10						  guifg=#00e0e0					gui=none
+highlight Type		 ctermfg=2						  guifg=#00e0e0					gui=none
 highlight Special	 ctermfg=12						  guifg=#00AA00					gui=none
 highlight Error					ctermbg=9							guibg=#ff0000	gui=none
 highlight Todo		 ctermfg=4	ctermbg=3			  guifg=#000080 guibg=#c0c000	gui=none
