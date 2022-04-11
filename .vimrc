@@ -159,14 +159,14 @@ let g:clang_format#style_options = {
 	\ "AlignAfterOpenBracket" : "Align",
 	\ "AllowShortBlocksOnASingleLine" : "false",
 	\ "AllowShortCaseLabelsOnASingleLine" : "true",
-	\ "AllowShortFunctionsOnASingleLine" : "None",
-	\ "AllowShortIfStatementsOnASingleLine" : "false",
-	\ "AllowShortLoopsOnASingleLine" : "false",
+	\ "AllowShortFunctionsOnASingleLine" : "Inline",
+	\ "AllowShortIfStatementsOnASingleLine" : "true",
+	\ "AllowShortLoopsOnASingleLine" : "true",
 	\ "AllowShortEnumsOnASingleLine" : "false",
 	\ "AlwaysBreakAfterReturnType" : "TopLevelDefinitions",
 	\ "AlwaysBreakTemplateDeclarations" : "true",
 	\ "BreakBeforeBraces" : "Custom",
-	\ "BraceWrapping": {
+	\ "BraceWrapping" : {
 	\   "AfterClass" : "false",
 	\   "AfterControlStatement" : "false",
 	\   "AfterEnum" : "false",
