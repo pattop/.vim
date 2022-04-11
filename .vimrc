@@ -36,6 +36,7 @@ Plugin 'tpope/vim-fugitive'
 " Plugin 'user/L9', {'name': 'newL9'}
 
 Plugin 'https://github.com/jlanzarotta/bufexplorer'
+Plugin 'https://github.com/rhysd/vim-clang-format'
 " Plugin 'https://github.com/felipec/notmuch-vim'
 " Plugin 'https://github.com/imain/notmuch-vim'
 " Plugin 'https://github.com/Valloric/YouCompleteMe'
@@ -150,3 +151,55 @@ tnoremap <C-w>h <C-\><C-n><C-w>h
 tnoremap <C-w>j <C-\><C-n><C-w>j
 tnoremap <C-w>k <C-\><C-n><C-w>k
 tnoremap <C-w>l <C-\><C-n><C-w>l
+
+" clang-format
+let g:clang_format#code_style = "LLVM"
+let g:clang_format#style_options = {
+	\ "AccessModifierOffset" : -8,
+	\ "AlignAfterOpenBracket" : "Align",
+	\ "AllowShortBlocksOnASingleLine" : "false",
+	\ "AllowShortCaseLabelsOnASingleLine" : "true",
+	\ "AllowShortFunctionsOnASingleLine" : "None",
+	\ "AllowShortIfStatementsOnASingleLine" : "false",
+	\ "AllowShortLoopsOnASingleLine" : "false",
+	\ "AllowShortEnumsOnASingleLine" : "false",
+	\ "AlwaysBreakAfterReturnType" : "TopLevelDefinitions",
+	\ "AlwaysBreakTemplateDeclarations" : "true",
+	\ "BreakBeforeBraces" : "Custom",
+	\ "BraceWrapping": {
+	\   "AfterClass" : "false",
+	\   "AfterControlStatement" : "false",
+	\   "AfterEnum" : "false",
+	\   "AfterFunction" : "true",
+	\   "AfterNamespace" : "false",
+	\   "AfterObjCDeclaration" : "false",
+	\   "AfterStruct" : "false",
+	\   "AfterUnion" : "false",
+	\   "AfterExternBlock" : "false",
+	\   "BeforeCatch" : "false",
+	\   "BeforeElse" : "false",
+	\   "IndentBraces" : "false",
+	\   "SplitEmptyFunction" : "false",
+	\   "SplitEmptyRecord" : "false",
+	\   "SplitEmptyNamespace" : "false" },
+	\ "BreakConstructorInitializers" : "BeforeComma",
+	\ "BreakStringLiterals" : "false",
+	\ "ConstructorInitializerIndentWidth" : 0,
+	\ "FixNamespaceComments" : "false",
+	\ "IncludeBlocks" : "Regroup",
+	\ "IndentWidth" : 8,
+	\ "PenaltyBreakAssignment" : 10,
+	\ "PenaltyBreakBeforeFirstCallParameter" : 30,
+	\ "PenaltyBreakComment" : 10,
+	\ "PenaltyExcessCharacter" : 2,
+	\ "SpaceAfterTemplateKeyword" : "false",
+	\ "SpaceInEmptyBlock" : "true",
+	\ "Standard" : "Latest",
+	\ "TabWidth" : 8,
+	\ "UseTab" : "Always" }
+" \cf: use style defined here
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :let g:clang_format#detect_style_file = 0<CR>:<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :let g:clang_format#detect_style_file = 0<CR>:ClangFormat<CR>
+" \cp: try to use project style, fall back to style defined here
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cp :let g:clang_format#detect_style_file = 1<CR>:<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cp :let g:clang_format#detect_style_file = 1<CR>:ClangFormat<CR>
