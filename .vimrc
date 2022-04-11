@@ -68,6 +68,7 @@ set nowrapscan
 set incsearch
 set ignorecase
 set hlsearch
+set smartcase
 set shortmess=aIoWT
 set showmatch
 set noswapfile
