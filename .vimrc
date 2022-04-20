@@ -154,6 +154,7 @@ tnoremap <C-w>k <C-\><C-n><C-w>k
 tnoremap <C-w>l <C-\><C-n><C-w>l
 
 " clang-format
+" let g:clang_format#extra_args = "--dump-config"
 let g:clang_format#code_style = "LLVM"
 let g:clang_format#style_options = {
 	\ "AccessModifierOffset" : -8,
@@ -188,6 +189,13 @@ let g:clang_format#style_options = {
 	\ "ConstructorInitializerIndentWidth" : 0,
 	\ "FixNamespaceComments" : "false",
 	\ "IncludeBlocks" : "Regroup",
+	\ "IncludeCategories" : [
+	\   { "Regex": ".*", "Priority": 1, "SortPriority": 1, "CaseSensitive": "false" },
+	\   { "Regex": "ignore" },
+	\   { "Regex": "ignore" },
+	\   { "Regex": "ignore" },
+	\   { "Regex": "ignore" },
+	\   { "Regex": "ignore" }, ],
 	\ "IndentWidth" : 8,
 	\ "PenaltyBreakAssignment" : 10,
 	\ "PenaltyBreakBeforeFirstCallParameter" : 30,
