@@ -159,6 +159,7 @@ let g:clang_format#code_style = "LLVM"
 let g:clang_format#style_options = {
 	\ "AccessModifierOffset" : -8,
 	\ "AlignAfterOpenBracket" : "Align",
+	\ "AlignTrailingComments" : "false",
 	\ "AllowShortBlocksOnASingleLine" : "false",
 	\ "AllowShortCaseLabelsOnASingleLine" : "true",
 	\ "AllowShortFunctionsOnASingleLine" : "Inline",
