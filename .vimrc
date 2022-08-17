@@ -13,6 +13,7 @@ Plugin 'https://github.com/neovim/nvim-lspconfig'
 Plugin 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 call vundle#end()
 filetype plugin on
+filetype indent off
 
 " General configuration
 set autoindent
