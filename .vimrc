@@ -185,6 +185,7 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<leader>l', require('lsp_lines').toggle, opts)
 vim.keymap.set('n', '<leader>d', '<cmd>Telescope diagnostics<cr>', opts)
 vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>', opts)
+vim.keymap.set('n', '<leader>gr', '<cmd>Telescope live_grep<cr>', opts)
 vim.keymap.set('n', '<leader>a', '<cmd>ClangdSwitchSourceHeader<cr>', opts)
 
 -- Use an on_attach function to only map the following keys
