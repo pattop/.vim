@@ -81,7 +81,7 @@ highlight TelescopeSelectionCaret   guibg=#151515
 highlight TelescopePreviewLine	    guibg=#151515
 
 " fix vertical split styling in neovim
-set fillchars+=vert:\|
+" set fillchars+=vert:\|
 
 " Set font
 set gfn=ProggyCleanTT\ 12
