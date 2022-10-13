@@ -163,6 +163,7 @@ let g:clang_format#style_options = {
 	\ "PenaltyExcessCharacter" : 2,
 	\ "SpaceAfterTemplateKeyword" : "false",
 	\ "SpaceInEmptyBlock" : "true",
+	\ "SpacesInContainerLiterals" : "false",
 	\ "Standard" : "Latest",
 	\ "TabWidth" : 8,
 	\ "UseTab" : "Always" }
