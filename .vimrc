@@ -159,7 +159,7 @@ let g:clang_format#style_options = {
 	\ "IndentWidth" : 8,
 	\ "PenaltyBreakAssignment" : 10,
 	\ "PenaltyBreakBeforeFirstCallParameter" : 30,
-	\ "PenaltyBreakComment" : 10,
+	\ "PenaltyBreakComment" : 20,
 	\ "PenaltyExcessCharacter" : 2,
 	\ "SpaceAfterTemplateKeyword" : "false",
 	\ "SpaceInEmptyBlock" : "true",
