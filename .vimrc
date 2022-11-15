@@ -122,7 +122,7 @@ let g:clang_format#style_options = {
 	\ "AllowShortBlocksOnASingleLine" : "false",
 	\ "AllowShortCaseLabelsOnASingleLine" : "true",
 	\ "AllowShortFunctionsOnASingleLine" : "Inline",
-	\ "AllowShortIfStatementsOnASingleLine" : "true",
+	\ "AllowShortIfStatementsOnASingleLine" : "AllIfsAndElse",
 	\ "AllowShortLoopsOnASingleLine" : "true",
 	\ "AllowShortEnumsOnASingleLine" : "false",
 	\ "AlwaysBreakAfterReturnType" : "TopLevelDefinitions",
