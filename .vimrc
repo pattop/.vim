@@ -14,6 +14,7 @@ Plugin 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 Plugin 'https://github.com/nvim-lua/plenary.nvim' " for telescope
 Plugin 'https://github.com/nvim-telescope/telescope-fzf-native.nvim' " for telescope
 Plugin 'https://github.com/nvim-telescope/telescope.nvim'
+Plugin 'rust-lang/rust.vim'
 call vundle#end()
 filetype plugin on
 filetype indent off
@@ -173,6 +174,10 @@ autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :let g:clang_format#dete
 " \cp: try to use project style, fall back to style defined here
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cp :let g:clang_format#detect_style_file = 1<CR>:<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cp :let g:clang_format#detect_style_file = 1<CR>:ClangFormat<CR>
+
+" switch off gratuitous rust rubbish
+let g:rust_recommended_style = 0
+autocmd FileType rust setlocal nosmartindent
 
 " newer neovim config requires lua
 lua << EOF
