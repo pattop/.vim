@@ -7,7 +7,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
-Plugin 'https://github.com/jlanzarotta/bufexplorer'
+" Plugin 'https://github.com/jlanzarotta/bufexplorer'
 Plugin 'https://github.com/rhysd/vim-clang-format'
 Plugin 'https://github.com/neovim/nvim-lspconfig'
 Plugin 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
@@ -15,6 +15,11 @@ Plugin 'https://github.com/nvim-lua/plenary.nvim' " for telescope
 Plugin 'https://github.com/nvim-telescope/telescope-fzf-native.nvim' " for telescope
 Plugin 'https://github.com/nvim-telescope/telescope.nvim'
 Plugin 'rust-lang/rust.vim'
+Plugin 'simrat39/rust-tools.nvim'
+Plugin 'j-hui/fidget.nvim'
+Plugin 'nvim-treesitter/nvim-treesitter'
+Plugin 'nvim-treesitter/playground'
+Plugin 'tomasiser/vim-code-dark'
 call vundle#end()
 filetype plugin on
 filetype indent off
@@ -40,6 +45,7 @@ set nowrap
 syntax on
 set updatetime=1000
 set signcolumn=yes
+set completeopt=menu
 
 " Tabs
 set tabstop=8
@@ -53,36 +59,10 @@ set cinoptions=(0,u4,U4,m1,+4,g0
 set colorcolumn=80
 
 " Colours
-highlight clear
-set background=dark
-syntax reset
-let g:colors_name = "patrick"
-set termguicolors
-highlight Comment		    guifg=#007800			gui=none
-highlight Constant		    guifg=#d96767			gui=none
-highlight Identifier		    guifg=#00e0e0			gui=none
-highlight Statement		    guifg=#00e0e0			gui=none
-highlight PreProc		    guifg=#00e0e0			gui=none
-highlight Type			    guifg=#00e0e0			gui=none
-highlight Special		    guifg=#00AA00			gui=none
-highlight Error						guibg=#ff0000	gui=none
-highlight Todo			    guifg=#000080	guibg=#c0c000	gui=none
-highlight Directory		    guifg=#00c000			gui=none
-highlight StatusLine		    guifg=#ffff00	guibg=#0000ff	gui=none
-highlight Normal		    guifg=#d0d0d0	guibg=#000000	gui=none
-highlight Search					guibg=#c0c000	gui=none
-highlight Pmenu			    guibg=#202040			gui=none
-highlight PmenuSel		    guibg=#5050A0			gui=none
-highlight Cursorline		    guibg=#151515
-highlight ColorColumn		    guibg=#151515
-highlight SignColumn		    guibg=#151515
-highlight DiagnosticWarn	    guifg=#cc8500
-highlight TelescopeSelection	    guibg=#151515
-highlight TelescopeSelectionCaret   guibg=#151515
-highlight TelescopePreviewLine	    guibg=#151515
-
-" fix vertical split styling in neovim
-" set fillchars+=vert:\|
+let g:codedark_transparent=1
+colorscheme codedark
+highlight rustInlayHint ctermfg=239
+highlight SignColumn ctermfg=14 ctermbg=235
 
 " Set font
 set gfn=ProggyCleanTT\ 12
@@ -175,24 +155,32 @@ autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :let g:clang_format#dete
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cp :let g:clang_format#detect_style_file = 1<CR>:<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cp :let g:clang_format#detect_style_file = 1<CR>:ClangFormat<CR>
 
-" switch off gratuitous rust rubbish
+" Rust configuration
 let g:rust_recommended_style = 0
+let g:rustfmt_autosave = 1
 autocmd FileType rust setlocal nosmartindent
+
+" a helper to figure out the syntax group under the cursor
+function! SynGroup()
+    let l:s = synID(line('.'), col('.'), 1)
+    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfun
 
 " newer neovim config requires lua
 lua << EOF
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap=true, silent=true }
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<leader>l', require('lsp_lines').toggle, opts)
-vim.keymap.set('n', '<leader>d', '<cmd>Telescope diagnostics<cr>', opts)
-vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>', opts)
-vim.keymap.set('n', '<leader>gr', '<cmd>Telescope live_grep<cr>', opts)
-vim.keymap.set('n', '<leader>a', '<cmd>ClangdSwitchSourceHeader<cr>', opts)
+local keymap_opts = { noremap=true, silent=true }
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, keymap_opts)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, keymap_opts)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, keymap_opts)
+vim.keymap.set('n', '<leader>l', require('lsp_lines').toggle, keymap_opts)
+vim.keymap.set('n', '<leader>d', '<cmd>Telescope diagnostics<cr>', keymap_opts)
+vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files hidden=true<cr>', keymap_opts)
+vim.keymap.set('n', '<leader>gr', '<cmd>Telescope live_grep<cr>', keymap_opts)
+vim.keymap.set('n', '<leader>a', '<cmd>ClangdSwitchSourceHeader<cr>', keymap_opts)
+vim.keymap.set('n', '<leader>be', '<cmd>Telescope buffers<cr>', keymap_opts)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -236,7 +224,21 @@ require('telescope').setup({
 			width = 280,
 			height = 100
 		},
-		sorting_strategy = "ascending"
+		sorting_strategy = "ascending",
+		mappings = {
+			n = {
+				['<c-d>'] = require('telescope.actions').delete_buffer
+			},
+			i = {
+				['<c-d>'] = require('telescope.actions').delete_buffer
+			}
+		},
+		initial_mode = "normal",
+	},
+	pickers = {
+		buffers = {
+			sort_mru = true,
+		},
 	},
 	extensions = {
 		fzf = {
@@ -249,4 +251,46 @@ require('telescope').setup({
 })
 require('telescope').load_extension('fzf')
 
+-- Rust
+-- See https://github.com/simrat39/rust-tools.nvim#configuration
+local rust_opts = {
+	tools = {
+		inlay_hints = {
+			auto = true,
+			show_parameter_hints = false,
+			highlight = "rustInlayHint",
+		},
+	},
+
+	-- See https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
+	server = {
+		on_attach = on_attach,
+		settings = {
+			-- See https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+			["rust-analyzer"] = {
+				checkOnSave = { command = "clippy", },
+				inlayHints = { locationLinks = false },
+			},
+		},
+	},
+}
+require('rust-tools').setup(rust_opts)
+
+require('fidget').setup()
+
+require('nvim-treesitter.configs').setup({
+	ensure_installed = { "c", "cpp", "rust" },
+	sync_install = true,
+	auto_install = false,
+	highlight = {
+		enable = true,
+		additional_vim_regex_highlighting = false,
+	}
+})
+
+require('nvim-treesitter.configs').setup({
+	enable = true,
+})
+
 EOF
+
