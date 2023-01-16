@@ -157,8 +157,12 @@ autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cp :let g:clang_format#dete
 
 " Rust configuration
 let g:rust_recommended_style = 0
-let g:rustfmt_autosave = 1
+let g:my_rustfmt_options = '--unstable-features --config hard_tabs=true,tab_spaces=8,max_width=79,where_single_line=true,match_arm_blocks=false,use_small_heuristics=max'
 autocmd FileType rust setlocal nosmartindent
+autocmd FileType rust nnoremap <buffer><Leader>cf :let g:rustfmt_command = 'rustfmt +nightly'<CR>::let g:rustfmt_options = expand(g:my_rustfmt_options)<CR>:<C-u>RustFmt<CR>
+autocmd FileType rust vnoremap <buffer><Leader>cf :let g:rustfmt_command = 'rustfmt +nightly'<CR>::let g:rustfmt_options = expand(g:my_rustfmt_options)<CR>:RustFmt<CR>
+autocmd FileType rust nnoremap <buffer><Leader>cp :let g:rustfmt_command = 'rustfmt'<CR>:let g:rustfmt_options = ''<CR>:<C-u>RustFmt<CR>
+autocmd FileType rust vnoremap <buffer><Leader>cp :let g:rustfmt_command = 'rustfmt'<CR>::let g:rustfmt_options = ''<CR>:RustFmt<CR>
 
 " a helper to figure out the syntax group under the cursor
 function! SynGroup()
@@ -262,13 +266,13 @@ local rust_opts = {
 		},
 	},
 
-	-- See https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
+	-- See https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 	server = {
 		on_attach = on_attach,
 		settings = {
 			-- See https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
 			["rust-analyzer"] = {
-				checkOnSave = { command = "clippy", },
+				checkOnSave = { command = "clippy", allTargets = false },
 				inlayHints = { locationLinks = false },
 			},
 		},
