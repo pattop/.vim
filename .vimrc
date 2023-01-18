@@ -261,7 +261,6 @@ local rust_opts = {
 	tools = {
 		inlay_hints = {
 			auto = true,
-			show_parameter_hints = false,
 			highlight = "rustInlayHint",
 		},
 	},
@@ -272,8 +271,7 @@ local rust_opts = {
 		settings = {
 			-- See https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
 			["rust-analyzer"] = {
-				checkOnSave = { command = "clippy", allTargets = false },
-				inlayHints = { locationLinks = false },
+				check = { command = "clippy", allTargets = false },
 			},
 		},
 	},
