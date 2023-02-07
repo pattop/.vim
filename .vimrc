@@ -63,6 +63,7 @@ let g:codedark_transparent=1
 colorscheme codedark
 highlight rustInlayHint ctermfg=239
 highlight SignColumn ctermfg=14 ctermbg=235
+highlight StatusLine ctermfg=188 ctermbg=239
 
 " Set font
 set gfn=ProggyCleanTT\ 12
