@@ -14,6 +14,7 @@ Plugin 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 Plugin 'https://github.com/nvim-lua/plenary.nvim' " for telescope
 Plugin 'https://github.com/nvim-telescope/telescope-fzf-native.nvim' " for telescope
 Plugin 'https://github.com/nvim-telescope/telescope.nvim'
+Plugin 'https://github.com/nvim-telescope/telescope-live-grep-args.nvim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'simrat39/rust-tools.nvim'
 Plugin 'j-hui/fidget.nvim'
@@ -183,7 +184,7 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, keymap_opts)
 vim.keymap.set('n', '<leader>l', require('lsp_lines').toggle, keymap_opts)
 vim.keymap.set('n', '<leader>d', '<cmd>Telescope diagnostics<cr>', keymap_opts)
 vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files hidden=true<cr>', keymap_opts)
-vim.keymap.set('n', '<leader>gr', '<cmd>Telescope live_grep<cr>', keymap_opts)
+vim.keymap.set('n', '<leader>gr', '<cmd>Telescope live_grep_args<cr>', keymap_opts)
 vim.keymap.set('n', '<leader>a', '<cmd>ClangdSwitchSourceHeader<cr>', keymap_opts)
 vim.keymap.set('n', '<leader>be', '<cmd>Telescope buffers<cr>', keymap_opts)
 
@@ -255,6 +256,7 @@ require('telescope').setup({
 	}
 })
 require('telescope').load_extension('fzf')
+require('telescope').load_extension('live_grep_args')
 
 -- Rust
 -- See https://github.com/simrat39/rust-tools.nvim#configuration
