@@ -270,11 +270,35 @@ local rust_opts = {
 
 	-- See https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 	server = {
+		on_init = function(client)
+			local path = client.workspace_folders[1].name
+			if string.find(path,"/home/patrick/src/ext/embassy") then
+				client.config.settings["rust-analyzer"].linkedProjects = {"/home/patrick/src/ext/embassy/examples/stm32f4/Cargo.toml"}
+			end
+			client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+			return true
+		end,
 		on_attach = on_attach,
 		settings = {
 			-- See https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
 			["rust-analyzer"] = {
-				check = { command = "clippy", allTargets = false },
+				check = {
+					command = "clippy",
+					allTargets = false,
+					noDefaultFeatures = true
+				},
+				cargo = {
+					noDefaultFeatures = true,
+					buildScripts = {
+						enable = true
+					}
+				},
+				procMacro = {
+					enable = true,
+					attributes = {
+						enable = true
+					}
+				},
 			},
 		},
 	},
