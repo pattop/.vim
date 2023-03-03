@@ -321,5 +321,7 @@ require('nvim-treesitter.configs').setup({
 	enable = true,
 })
 
+vim.lsp.set_log_level("off")
+
 EOF
 
