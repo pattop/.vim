@@ -289,15 +289,6 @@ local rust_opts = {
 				},
 				cargo = {
 					noDefaultFeatures = true,
-					buildScripts = {
-						enable = true
-					}
-				},
-				procMacro = {
-					enable = true,
-					attributes = {
-						enable = true
-					}
 				},
 			},
 		},
