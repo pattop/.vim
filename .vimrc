@@ -21,6 +21,7 @@ Plugin 'j-hui/fidget.nvim'
 Plugin 'nvim-treesitter/nvim-treesitter'
 Plugin 'nvim-treesitter/playground'
 Plugin 'tomasiser/vim-code-dark'
+Plugin 'editorconfig/editorconfig-vim'
 call vundle#end()
 filetype plugin on
 filetype indent off
