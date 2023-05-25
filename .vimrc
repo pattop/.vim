@@ -167,6 +167,9 @@ autocmd FileType rust vnoremap <buffer><Leader>cf :let g:rustfmt_command = 'rust
 autocmd FileType rust nnoremap <buffer><Leader>cp :let g:rustfmt_command = 'rustfmt'<CR>:let g:rustfmt_options = ''<CR>:<C-u>RustFmt<CR>
 autocmd FileType rust vnoremap <buffer><Leader>cp :let g:rustfmt_command = 'rustfmt'<CR>::let g:rustfmt_options = ''<CR>:RustFmt<CR>
 
+" auto format on save
+autocmd BufWritePre * lua vim.lsp.buf.format()
+
 " a helper to figure out the syntax group under the cursor
 function! SynGroup()
     let l:s = synID(line('.'), col('.'), 1)
