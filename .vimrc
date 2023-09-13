@@ -294,6 +294,9 @@ local rust_opts = {
 				cargo = {
 					noDefaultFeatures = true,
 				},
+				runnables = {
+					extraArgs = {"--release"},
+				},
 			},
 		},
 	},
