@@ -289,12 +289,8 @@ local rust_opts = {
 				check = {
 					command = "clippy",
 					allTargets = false,
-					noDefaultFeatures = true
 				},
 				cargo = {
-					noDefaultFeatures = true,
-				},
-				runnables = {
 					extraArgs = {"--release"},
 				},
 			},
