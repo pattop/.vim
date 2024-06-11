@@ -63,7 +63,6 @@ set colorcolumn=80
 " Colours
 let g:codedark_transparent=1
 colorscheme codedark
-highlight rustInlayHint ctermfg=239
 highlight SignColumn ctermfg=14 ctermbg=235
 highlight StatusLine ctermfg=188 ctermbg=239
 
@@ -268,7 +267,7 @@ local rust_opts = {
 	tools = {
 		inlay_hints = {
 			auto = true,
-			highlight = "rustInlayHint",
+			highlight = "CocInlayHint",
 		},
 	},
 
