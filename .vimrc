@@ -63,8 +63,10 @@ set colorcolumn=80
 " Colours
 let g:codedark_transparent=1
 colorscheme codedark
-highlight SignColumn ctermfg=14 ctermbg=235
-highlight StatusLine ctermfg=188 ctermbg=239
+highlight clear SignColumn
+highlight link SignColumn CursorLine
+highlight clear StatusLine
+highlight link StatusLine CursorLine
 
 " Set font
 set gfn=ProggyCleanTT\ 12
