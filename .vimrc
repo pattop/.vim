@@ -287,12 +287,12 @@ local rust_opts = {
 		settings = {
 			-- See https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
 			["rust-analyzer"] = {
+				cargo = {
+					extraArgs = "--locked",
+				},
 				check = {
 					command = "clippy",
 					allTargets = false,
-				},
-				cargo = {
-					extraArgs = {"--release"},
 				},
 			},
 		},
