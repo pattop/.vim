@@ -65,8 +65,6 @@ let g:codedark_transparent=1
 colorscheme codedark
 highlight clear SignColumn
 highlight link SignColumn CursorLine
-highlight clear StatusLine
-highlight link StatusLine CursorLine
 
 " Set font
 set gfn=ProggyCleanTT\ 12
