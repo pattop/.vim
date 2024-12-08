@@ -15,8 +15,7 @@ Plugin 'https://github.com/nvim-lua/plenary.nvim' " for telescope
 Plugin 'https://github.com/nvim-telescope/telescope-fzf-native.nvim' " for telescope
 Plugin 'https://github.com/nvim-telescope/telescope.nvim'
 Plugin 'https://github.com/nvim-telescope/telescope-live-grep-args.nvim'
-Plugin 'rust-lang/rust.vim'
-Plugin 'simrat39/rust-tools.nvim'
+Plugin 'mrcjkb/rustaceanvim'
 Plugin 'j-hui/fidget.nvim'
 Plugin 'nvim-treesitter/nvim-treesitter'
 Plugin 'nvim-treesitter/playground'
@@ -214,6 +213,9 @@ local on_attach = function(client, bufnr)
   end, bufopts)
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', '<leader>em', function()
+    vim.cmd.RustLsp('expandMacro')
+  end, bufopts)
 end
 
 vim.diagnostic.config({
@@ -262,8 +264,8 @@ require('telescope').load_extension('fzf')
 require('telescope').load_extension('live_grep_args')
 
 -- Rust
--- See https://github.com/simrat39/rust-tools.nvim#configuration
-local rust_opts = {
+vim.g.rustaceanvim = {
+	-- Plugin configuration
 	tools = {
 		inlay_hints = {
 			auto = true,
@@ -271,20 +273,13 @@ local rust_opts = {
 		},
 	},
 
-	-- See https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+	-- LSP configuration
+	-- See https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
 	server = {
-		on_init = function(client)
-			local path = client.workspace_folders[1].name
-			if string.find(path,"/home/patrick/src/ext/embassy") then
-				client.config.settings["rust-analyzer"].linkedProjects = {"/home/patrick/src/ext/embassy/examples/stm32f4/Cargo.toml"}
-			end
-			client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
-			return true
-		end,
 		on_attach = on_attach,
-		settings = {
-			-- See https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-			["rust-analyzer"] = {
+		default_settings = {
+			-- rust-analyzer language server configuration
+			['rust-analyzer'] = {
 				cargo = {
 					extraArgs = "--locked",
 				},
@@ -295,8 +290,9 @@ local rust_opts = {
 			},
 		},
 	},
+	-- DAP configuration
+	dap = { },
 }
-require('rust-tools').setup(rust_opts)
 
 require('fidget').setup()
 
