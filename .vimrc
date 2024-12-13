@@ -21,6 +21,7 @@ Plugin 'nvim-treesitter/nvim-treesitter'
 Plugin 'nvim-treesitter/playground'
 Plugin 'tomasiser/vim-code-dark'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'chrisgrieser/nvim-lsp-endhints'
 call vundle#end()
 filetype plugin on
 filetype indent off
@@ -216,6 +217,11 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>em', function()
     vim.cmd.RustLsp('expandMacro')
   end, bufopts)
+
+  -- Inlay hints
+  if client.server_capabilities.inlayHintProvider then
+    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+  end
 end
 
 vim.diagnostic.config({
@@ -265,14 +271,6 @@ require('telescope').load_extension('live_grep_args')
 
 -- Rust
 vim.g.rustaceanvim = {
-	-- Plugin configuration
-	tools = {
-		inlay_hints = {
-			auto = true,
-			highlight = "CocInlayHint",
-		},
-	},
-
 	-- LSP configuration
 	-- See https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
 	server = {
@@ -309,6 +307,25 @@ require('nvim-treesitter.configs').setup({
 require('nvim-treesitter.configs').setup({
 	enable = true,
 })
+
+require("lsp-endhints").setup {
+	icons = {
+		type = "T:",
+		parameter = "P:",
+		offspec = "", -- hint kind not defined in official LSP spec
+		unknown = "", -- hint kind is nil
+	},
+	label = {
+		truncateAtChars = 30,
+		padding = 1,
+		marginLeft = 0,
+		sameKindSeparator = ", ",
+	},
+	extmark = {
+		priority = 50,
+	},
+	autoEnableHints = true,
+}
 
 vim.lsp.set_log_level("off")
 
