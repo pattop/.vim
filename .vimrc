@@ -65,6 +65,8 @@ let g:codedark_transparent=1
 colorscheme codedark
 highlight clear SignColumn
 highlight link SignColumn CursorLine
+highlight DiffChange guibg=#073655
+highlight DiffText guibg=#005f87
 
 " Set font
 set gfn=ProggyCleanTT\ 12
