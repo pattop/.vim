@@ -282,7 +282,7 @@ vim.g.rustaceanvim = {
 			-- rust-analyzer language server configuration
 			['rust-analyzer'] = {
 				cargo = {
-					extraArgs = "--locked",
+					extraArgs = {"--locked"},
 				},
 				check = {
 					command = "clippy",
