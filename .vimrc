@@ -48,6 +48,7 @@ syntax on
 set updatetime=1000
 set signcolumn=yes
 set completeopt=menu
+set linebreak
 
 " Tabs
 set tabstop=8
