@@ -232,7 +232,8 @@ vim.diagnostic.config({
   virtual_lines = false
 })
 
-require('lspconfig').clangd.setup({
+vim.lsp.enable('clangd')
+vim.lsp.config('clangd', {
 	on_attach = on_attach
 })
 
