@@ -289,6 +289,9 @@ vim.g.rustaceanvim = {
 					command = "clippy",
 					allTargets = false,
 				},
+				diagnostics = {
+					disabled = { "macro-error", "unresolved-macro-call" },
+				},
 			},
 		},
 	},
