@@ -7,9 +7,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
-" Plugin 'https://github.com/jlanzarotta/bufexplorer'
 Plugin 'https://github.com/rhysd/vim-clang-format'
-Plugin 'https://github.com/neovim/nvim-lspconfig'
 Plugin 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 Plugin 'https://github.com/nvim-lua/plenary.nvim' " for telescope
 Plugin 'https://github.com/nvim-telescope/telescope-fzf-native.nvim' " for telescope
