@@ -18,7 +18,6 @@ Plugin 'https://github.com/nvim-telescope/telescope-live-grep-args.nvim'
 Plugin 'mrcjkb/rustaceanvim'
 Plugin 'j-hui/fidget.nvim'
 Plugin 'nvim-treesitter/nvim-treesitter'
-Plugin 'nvim-treesitter/playground'
 Plugin 'tomasiser/vim-code-dark'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'chrisgrieser/nvim-lsp-endhints'
@@ -301,18 +300,8 @@ vim.g.rustaceanvim = {
 
 require('fidget').setup()
 
-require('nvim-treesitter.configs').setup({
-	ensure_installed = { "c", "cpp", "rust" },
-	sync_install = true,
-	auto_install = false,
-	highlight = {
-		enable = true,
-		additional_vim_regex_highlighting = false,
-	}
-})
-
-require('nvim-treesitter.configs').setup({
-	enable = true,
+require('nvim-treesitter').install({
+  "c", "cpp", "vim", "rust"
 })
 
 require("lsp-endhints").setup {
