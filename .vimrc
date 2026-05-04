@@ -289,6 +289,11 @@ vim.g.rustaceanvim = {
 				diagnostics = {
 					disabled = { "macro-error", "unresolved-macro-call" },
 				},
+				completion = {
+					callable = {
+						snippets = "none"
+					}
+				}
 			},
 		},
 	},
