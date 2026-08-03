@@ -326,7 +326,7 @@ require("lsp-endhints").setup {
 	autoEnableHints = true,
 }
 
-vim.lsp.set_log_level("off")
+vim.lsp.log.set_level("off")
 
 EOF
 
